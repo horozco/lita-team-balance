@@ -1,0 +1,6 @@
+en:
+  lita:
+    handlers:
+      team_balance:
+        team_not_found: "%{team_name} team does not exist."
+        score_set: "%{member_name}'s score was set to %{score}. This score only applies to the %{team_name} team."
