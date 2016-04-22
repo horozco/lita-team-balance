@@ -2,5 +2,14 @@ en:
   lita:
     handlers:
       team_balance:
+        wrong_command: "You are doing something wrong, please check your command."
+        not_stored_scores: "There are not stored scores for the %{team_name} team."
         team_not_found: "%{team_name} team does not exist."
-        score_set: "%{member_name}'s score was set to %{score}. This score only applies to the %{team_name} team."
+        team_not_even: "The %{team_name} team should be even to perform the balance, there are %{count} members right now."
+        missing_scores: "There are %{missing_count} missing score for the %{team_name} team, you need to set them all to perform the balance. (%{missing_members}) "
+        score_not_found: "%{member_name}'s score was not found in the %{team_name} team."
+        member_not_admin: "You can't perform this action because you are not an admin. The admins are: %{admins}"
+        set_score: "%{member_name}'s score was set to %{score}. This score only applies to the %{team_name} team."
+        get_score: "%{member_name}'s score for %{team_name} team is %{score}"
+        score_cleared: "%{member_name}'s score for %{team_name} team has been cleared, their score was %{score}"
+        all_scores_cleared: "All %{team_name} team scores has been cleared."

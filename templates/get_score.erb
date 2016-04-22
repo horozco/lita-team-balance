@@ -1,0 +1,16 @@
+<% if @single  %>
+<%=	
+I18n.t("lita.handlers.team_balance.get_score",
+				team_name: @team_name,
+				member_name: @member_name,
+				score: @score
+		  )
+%>
+<%	else %>
+<%=	"#{@team_name.capitalize} team scores: " %>
+
+<% @team_scores.each_with_index do |(member, score), i|  %>
+<%= "#{i + 1}. #{member} => #{score} " %>
+
+<% end %>
+<% end %>

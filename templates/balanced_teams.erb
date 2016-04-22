@@ -1,0 +1,3 @@
+<% header = [ '*Blue Team*:large_blue_circle:', '*Red Team*:red_circle:'  ] %>
+<% rows = @teams %>
+<%= Terminal::Table.new  headings: header, rows: rows%>
