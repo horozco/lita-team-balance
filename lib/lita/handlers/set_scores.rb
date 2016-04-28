@@ -22,7 +22,7 @@ module Lita
             response.match_data[2], response.user.mention_name
           )
 
-          if member_is_admin?(response.user.mention_name)
+          if member_is_admin?(response.user.id)
             score_value = response.match_data[3]
             score_key = 'scores:' + team_name + ':' + member_name
             redis.set(score_key, score_value)
@@ -44,10 +44,7 @@ module Lita
       private
 
       def member_is_admin?(mention_name)
-        if lita_user = Lita::User.fuzzy_find(mention_name)
-          return Lita.config.robot.admins.include? lita_user.id
-        end
-        false
+        Lita.config.robot.admins.include? mention_name
       end
 
       Lita.register_handler(self)
