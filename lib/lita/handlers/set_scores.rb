@@ -34,7 +34,7 @@ module Lita
                               score: score_value)
             )
           else
-            response.reply(render_template(:member_not_admin, admins: Lita.config.robot.admins))
+            response.reply(render_template(:member_not_admin))
           end
         else
           response.reply(render_template(:team_not_found, team_name: team_name))

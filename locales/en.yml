@@ -8,7 +8,7 @@ en:
         team_not_even: "The %{team_name} team should be even to perform the balance, there are %{count} members right now."
         missing_scores: "There are %{missing_count} missing score for the %{team_name} team, you need to set them all to perform the balance. (%{missing_members}) "
         score_not_found: "%{member_name}'s score was not found in the %{team_name} team."
-        member_not_admin: "You can't perform this action because you are not an admin. The admins are: %{admins}"
+        member_not_admin: "You can't perform this action because you are not an admin."
         set_score: "%{member_name}'s score was set to %{score}. This score only applies to the %{team_name} team."
         get_score: "%{member_name}'s score for %{team_name} team is %{score}"
         score_cleared: "%{member_name}'s score for %{team_name} team has been cleared, their score was %{score}"
