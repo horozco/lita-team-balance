@@ -1,3 +1,5 @@
-<% header = [ '*Blue Team*:large_blue_circle:', '*Red Team*:red_circle:'  ] %>
+<% header = [ '*Blue Team*', '*Red Team*' ] %>
 <% rows = @teams %>
-<%= Terminal::Table.new  headings: header, rows: rows%>
+<% table = Terminal::Table.new  headings: header, rows: rows, :style => {:width => 60} %>
+<% table.align_column(1, :right) %>
+<%= table  %>

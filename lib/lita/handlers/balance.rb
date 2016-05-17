@@ -15,28 +15,16 @@ module Lita
       )
 
       def balance(response)
-      	team_name = response.match_data[1]
+        team_name = response.match_data[1]
         if team = get_team(team_name)
           if members_even?(team, response)
             if team_scores = get_member_scores(team, response)
-              ordered_scores = team_scores.sort{|a, b| b[1] <=> a[1] }.to_h
-              blue_team = [] ; red_team = []
-
-              ordered_scores.each do |score|
-                blue_team_members_count = blue_team.count
-                red_team_members_count = red_team.count
-
-                blue_team_score_count = blue_team.map { |score| score[1]  }.inject(:+) || 0
-                red_team_score_count = red_team.map { |score| score[1]  }.inject(:+) || 0
-                
-                if blue_team_members_count <= red_team_score_count
-                  if blue_team_score_count <= red_team_score_count
-                    blue_team.push score
-                    next
-                  end
-                end
-                red_team.push score
+              balanced = begin
+                balance_group(team_scores.to_a)
+              rescue
+                balance_group(team_scores.to_a)
               end
+              blue_team = balanced[0][:group] ; red_team = balanced[1][:group]
               blue_team.map! { |member| member.first }
               red_team.map! { |member| member.first }
               response.reply(render_template(:balanced_teams, teams: blue_team.zip(red_team)))
@@ -79,6 +67,18 @@ module Lita
           return false
         end
         true
+      end
+
+      # thanks robertomiranda: https://gist.github.com/robertomiranda/a5b6e250fa0ad355b277dfe2bed7e267
+      def balance_group(members)
+        group1, group2 = members.shuffle.in_groups(2)
+        mean1 = (group1.map { |score| score[1] }.inject(:+)/group1.size.to_f)
+        mean2 = (group2.map { |score| score[1] }.inject(:+)/group2.size.to_f)
+        if mean1.to_i ==  mean2.to_i
+          return [{mean: mean1, group: group1}, {mean: mean2, group: group2}]
+        else
+          balance_group(members.shuffle)
+        end
       end
 
       Lita.register_handler(self)

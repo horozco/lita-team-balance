@@ -6,6 +6,7 @@ Lita.load_locales Dir[File.expand_path(
 
 # Helpers
 require "lita/helpers/team-helpers"
+require "lita/helpers/array"
 
 #Handlers
 require "lita/handlers/team_balance"

@@ -14,7 +14,7 @@ module TeamHelpers
 
   def get_score_in_words(score)
   	scores_in_words = {
-  		10 => ":ten:",
+  		10 => ":keycap_ten:",
       9 => ":nine:",
       8 => ":eight:",
       7 => ":seven:",
